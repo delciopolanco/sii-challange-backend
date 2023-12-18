@@ -31,6 +31,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseAuthorization();
+app.UseCors();
 
 app.MapControllers();
 
