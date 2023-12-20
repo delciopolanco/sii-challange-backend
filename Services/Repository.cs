@@ -57,6 +57,11 @@ namespace POS_service_customers.Services
             return await _db.Set<TEntity>().FirstOrDefaultAsync(predicate);
         }
 
+        public async Task<TDto?> FirstOrDefault<TDto>(Expression<Func<TDto, bool>> predicate)
+        {
+            return await _db.Set<TEntity>().ProjectTo<TDto>(_mapper.ConfigurationProvider).FirstOrDefaultAsync(predicate);
+        }
+
         public IQueryable<TEntity> Where(Expression<Func<TEntity, bool>> predicate)
         {
             return _db.Set<TEntity>().Where(predicate);

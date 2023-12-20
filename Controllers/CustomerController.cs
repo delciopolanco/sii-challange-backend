@@ -22,14 +22,21 @@ namespace POS_service_customers.Controllers
         }
 
         [HttpGet()]
-        public async Task<ActionResult<IEnumerable<Customer>>> Get(int page = 1, int pageSize = 10)
+        public async Task<ActionResult<IEnumerable<CustomerIdDTO>>> Get(int page = 1, int pageSize = 10)
         {
             var query = _customerRepository.Queryable<CustomerIdDTO>().OrderBy(c => c.Name).Skip((page - 1) * pageSize).Take(pageSize);
             return Ok(await query.ToListAsync());
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<CustomerIdDTO>> Get(int id)
+        {
+            var query = _customerRepository.FirstOrDefault<CustomerIdDTO>(e => e.Id == id);
+            return Ok(await query);
+        }
+
         [HttpPost()]
-        public async Task<ActionResult<Customer>> Post(CustomerDTO customerDTO)
+        public async Task<ActionResult<CustomerDTO>> Post(CustomerDTO customerDTO)
         {
             var customer = _mapper.Map<Customer>(customerDTO);
 
@@ -50,17 +57,17 @@ namespace POS_service_customers.Controllers
             return Ok();
         }
 
-        [HttpDelete()]
-        public async Task<ActionResult> Delete(int Id)
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(int id)
         {
 
-            if (string.IsNullOrEmpty(Id.ToString())) return new BadRequestResult();
+            if (string.IsNullOrEmpty(id.ToString())) return new BadRequestResult();
 
-            var customer = _customerRepository.Queryable().Where(e => e.Id == Id).FirstOrDefault();
+            var customer = _customerRepository.Queryable().Where(e => e.Id == id).FirstOrDefault();
 
             if (customer == null || customer.Active == false) return new BadRequestResult();
 
-            await _customerRepository.Queryable().Where(e => e.Id == Id).ExecuteUpdateAsync(e => e.SetProperty(s => s.Active, s => false));
+            await _customerRepository.Queryable().Where(e => e.Id == id).ExecuteUpdateAsync(e => e.SetProperty(s => s.Active, s => false));
 
             return Ok();
         }

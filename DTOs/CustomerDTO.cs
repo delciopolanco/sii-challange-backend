@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using AutoMapper.Configuration.Annotations;
 using POS_service_address.DTOs;
 using POS_service_contact.DTOs;
 using POS_service_customers.Models;
@@ -23,7 +22,7 @@ namespace POS_service_customers.DTOs
     public class CustomerIdDTO: CustomerDTO
     {
         [Required]
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         public bool Active { get; set; } = true;
     }

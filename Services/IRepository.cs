@@ -7,6 +7,7 @@ namespace POS_service_customers.Services
 	{
         Task<TEntity> GetById(int id);
         Task<TEntity> FirstOrDefault(Expression<Func<TEntity, bool>> predicate);
+        Task<TDto?> FirstOrDefault<TDto>(Expression<Func<TDto, bool>> predicate);
         IQueryable<TEntity> Where(Expression<Func<TEntity, bool>> predicate);
         IQueryable<TDto> Queryable<TDto>();
         IQueryable<TEntity> Queryable(Expression<Func<TEntity, bool>> predicate);
