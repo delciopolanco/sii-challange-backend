@@ -1,7 +1,7 @@
 ﻿using System.Linq.Expressions;
-using POS_service_customers.Models;
+using addCard_backend.Models;
 
-namespace POS_service_customers.Services
+namespace addCard_backend.Services
 {
 	public interface IRepository<TEntity> where TEntity : Base
 	{

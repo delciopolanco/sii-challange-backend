@@ -1,23 +1,15 @@
-﻿using AutoMapper;
-using POS_service_address.DTOs;
-using POS_service_contact.DTOs;
-using POS_service_customers.DTOs;
-using POS_service_customers.Models;
+﻿using addCard_backend.DTOs;
+using addCard_backend.Models;
+using AutoMapper;
 
-namespace POS_service_customers.AutoMapper
+namespace addCard_backend.AutoMapper
 {
 	public class AutoMapperProfiles:Profile
 	{
 		public AutoMapperProfiles()
 		{
-			CreateMap<CustomerDTO, Customer>().ReverseMap();
-            CreateMap<CustomerIdDTO, Customer>().ReverseMap();
-
-            CreateMap<AddressDTO, Address>().ReverseMap();
-            CreateMap<AddressIdDTO, Address>().ReverseMap();
-
-            CreateMap<ContactDTO, Contact>().ReverseMap();
-            CreateMap<ContactIdDTO, Contact>().ReverseMap();
+			CreateMap<CreditCardDTO, CreditCard>().ReverseMap();
+            CreateMap<CreditCardIdDTO, CreditCard>().ReverseMap();
         }
 	}
 }

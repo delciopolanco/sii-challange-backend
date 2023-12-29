@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace POS_service_customers.Utils.Filters
+namespace addCard_backend.Utils.Filters
 {
 	public class ValidateModelFilter: ActionFilterAttribute
 	{

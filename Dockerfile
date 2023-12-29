@@ -6,16 +6,20 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["../POS-service-customers/POS-service-customers.csproj", "../POS-service-customers/"]
-RUN dotnet restore "../POS-service-customers/POS-service-customers.csproj"
+COPY ["addCard-backend.csproj", "."]
+RUN dotnet restore "./addCard-backend.csproj"
 COPY . .
-WORKDIR "/src/../POS-service-customers"
-RUN dotnet build "POS-service-customers.csproj" -c Release -o /app/build
+WORKDIR "/src/."
+RUN dotnet build "addCard-backend.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "POS-service-customers.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "addCard-backend.csproj" -c Release -o /app/publish /p:UseAppHost=false
+
+# Add tools for EF Core
+RUN dotnet tool install --global dotnet-ef --version 7.0.0
+ENV PATH="${PATH}:/root/.dotnet/tools"
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "POS-service-customers.dll"]
+ENTRYPOINT ["dotnet", "addCard-backend.dll"]

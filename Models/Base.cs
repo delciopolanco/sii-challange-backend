@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace POS_service_customers.Models
+namespace addCard_backend.Models
 {
 	public abstract class Base
 	{

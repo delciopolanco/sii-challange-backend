@@ -27,7 +27,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "EasyPos_service_customers": {
+    "addCard_service_creditcards": {
       "commandName": "Project",
       "launchBrowser": true,
       "applicationUrl": "http://localhost:20655",

@@ -4,11 +4,12 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>EasyPos_service_customers</RootNamespace>
+    <RootNamespace>addCard_backend</RootNamespace>
     <DockerComposeProjectPath>../POS-APIGateway/docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'addCard_service_creditcards' " />
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.14" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
@@ -36,6 +37,8 @@
     <None Remove="Utils\CustomValidations\" />
     <None Remove="Utils\Filters\" />
     <None Remove="Utils\AutoMapper\" />
+    <None Remove="Exceptions\" />
+    <None Remove="Utils\Extentions\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -48,5 +51,7 @@
     <Folder Include="Utils\CustomValidations\" />
     <Folder Include="Utils\Filters\" />
     <Folder Include="Utils\AutoMapper\" />
+    <Folder Include="Exceptions\" />
+    <Folder Include="Utils\Extentions\" />
   </ItemGroup>
 </Project>

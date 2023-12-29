@@ -1,18 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-using POS_service_customers.Context;
-using POS_service_customers.Models;
+using addCard_backend.Context;
+using addCard_backend.Models;
 using AutoMapper.QueryableExtensions;
 using AutoMapper;
 
-namespace POS_service_customers.Services
+namespace addCard_backend.Services
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : Base
     {
-        private readonly CustomerDbContext _db;
+        private readonly CreditCardContext _db;
         private readonly IMapper _mapper;
 
-        public Repository(CustomerDbContext db, IMapper mapper)
+        public Repository(CreditCardContext db, IMapper mapper)
         {
             _db = db;
             _mapper = mapper;

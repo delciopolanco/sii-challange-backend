@@ -1,0 +1,30 @@
+version: "3.8"
+
+networks:
+  backend-network:
+
+services:
+  sql-server:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      SA_PASSWORD: "AkuyysCuW61Gkty"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    networks:
+      - backend-network
+
+  backend:
+    container_name: addcard-backend
+    image: ${DOCKER_REGISTRY-}addcard-backend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8003:80"
+    environment:
+      ConnectionStrings__DefaultConnection: "Server=sql-server;Database=addCard-dev-sql;User Id=sa;Password=AkuyysCuW61Gkty;TrustServerCertificate=True"
+    depends_on:
+      - sql-server
+    networks:
+      - backend-network
